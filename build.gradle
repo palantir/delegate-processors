@@ -25,7 +25,7 @@ apply plugin: 'com.palantir.jdks.latest'
 
 javaVersions {
     libraryTarget = 11
-    distributionTarget = 17
+    runtime = 17
 }
 
 allprojects {
