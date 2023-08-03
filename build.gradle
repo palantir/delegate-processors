@@ -33,6 +33,7 @@ allprojects {
     apply plugin: 'com.palantir.jakarta-package-alignment'
 
     version gitVersion()
+    group 'com.palantir.delegate.processors'
 
     repositories {
         mavenCentral() { metadataSources { mavenPom(); ignoreGradleMetadataRedirection() } }
