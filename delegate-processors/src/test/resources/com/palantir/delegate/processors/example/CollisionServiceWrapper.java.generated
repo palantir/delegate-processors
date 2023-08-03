@@ -1,0 +1,27 @@
+package com.palantir.delegate.processors.example;
+
+import java.util.Objects;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.SimpleProcessor")
+public final class CollisionServiceWrapper implements CollisionService {
+    private final CollisionService delegate;
+
+    private CollisionServiceWrapper(CollisionService delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String delegate(String delegate) {
+        return this.delegate.delegate(delegate);
+    }
+
+    @Override
+    public String toString() {
+        return "CollisionServiceWrapper{" + this.delegate + "}";
+    }
+
+    public static CollisionServiceWrapper of(CollisionService delegate) {
+        return new CollisionServiceWrapper(delegate);
+    }
+}

@@ -1,0 +1,56 @@
+package com.palantir.delegate.processors.example;
+
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.PrintingProcessor")
+public final class PrintingBoundedCallableGreetingResource<
+                T extends CharSequence, DELEGATE extends GreetingService & Callable<T>>
+        implements GreetingService, Callable<T> {
+    private final DELEGATE delegate;
+
+    private PrintingBoundedCallableGreetingResource(DELEGATE delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String greet() {
+        System.out.println("greet");
+        try {
+            String _result = this.delegate.greet();
+            System.out.println(_result);
+            return _result;
+        } catch (Throwable _throwable) {
+            _throwable.printStackTrace();
+            throw _throwable;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    @Override
+    public T call() throws Exception {
+        System.out.println("call");
+        try {
+            T _result = this.delegate.call();
+            System.out.println(_result);
+            return _result;
+        } catch (Throwable _throwable) {
+            _throwable.printStackTrace();
+            throw _throwable;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "PrintingBoundedCallableGreetingResource{" + this.delegate + "}";
+    }
+
+    public static <T extends CharSequence, DELEGATE extends GreetingService & Callable<T>>
+            PrintingBoundedCallableGreetingResource<T, DELEGATE> of(DELEGATE delegate) {
+        return new PrintingBoundedCallableGreetingResource<T, DELEGATE>(delegate);
+    }
+}

@@ -1,0 +1,4 @@
+rootProject.name = 'delegate-processors-root'
+
+include 'delegate-processors'
+

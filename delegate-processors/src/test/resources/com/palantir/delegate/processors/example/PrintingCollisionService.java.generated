@@ -1,0 +1,37 @@
+package com.palantir.delegate.processors.example;
+
+import java.util.Objects;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.PrintingProcessor")
+public final class PrintingCollisionService implements CollisionService {
+    private final CollisionService delegate;
+
+    private PrintingCollisionService(CollisionService delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String delegate(String delegate) {
+        System.out.println("delegate");
+        try {
+            String _result = this.delegate.delegate(delegate);
+            System.out.println(_result);
+            return _result;
+        } catch (Throwable _throwable) {
+            _throwable.printStackTrace();
+            throw _throwable;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "PrintingCollisionService{" + this.delegate + "}";
+    }
+
+    public static PrintingCollisionService of(CollisionService delegate) {
+        return new PrintingCollisionService(delegate);
+    }
+}

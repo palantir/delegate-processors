@@ -1,0 +1,55 @@
+package com.palantir.delegate.processors.example;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.Objects;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.PrintingProcessor")
+public final class PrintingCloseableGreetingResource<DELEGATE extends GreetingService & Closeable>
+        implements GreetingService, Closeable {
+    private final DELEGATE delegate;
+
+    private PrintingCloseableGreetingResource(DELEGATE delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String greet() {
+        System.out.println("greet");
+        try {
+            String _result = this.delegate.greet();
+            System.out.println(_result);
+            return _result;
+        } catch (Throwable _throwable) {
+            _throwable.printStackTrace();
+            throw _throwable;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    @Override
+    public void close() throws IOException {
+        System.out.println("close");
+        try {
+            this.delegate.close();
+            System.out.println("void");
+        } catch (Throwable _throwable) {
+            _throwable.printStackTrace();
+            throw _throwable;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "PrintingCloseableGreetingResource{" + this.delegate + "}";
+    }
+
+    public static <DELEGATE extends GreetingService & Closeable> PrintingCloseableGreetingResource<DELEGATE> of(
+            DELEGATE delegate) {
+        return new PrintingCloseableGreetingResource<DELEGATE>(delegate);
+    }
+}

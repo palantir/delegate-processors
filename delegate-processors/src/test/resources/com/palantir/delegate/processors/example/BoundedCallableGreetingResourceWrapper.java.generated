@@ -1,0 +1,36 @@
+package com.palantir.delegate.processors.example;
+
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.SimpleProcessor")
+public final class BoundedCallableGreetingResourceWrapper<
+                T extends CharSequence, DELEGATE extends GreetingService & Callable<T>>
+        implements GreetingService, Callable<T> {
+    private final DELEGATE delegate;
+
+    private BoundedCallableGreetingResourceWrapper(DELEGATE delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String greet() {
+        return this.delegate.greet();
+    }
+
+    @Override
+    public T call() throws Exception {
+        return this.delegate.call();
+    }
+
+    @Override
+    public String toString() {
+        return "BoundedCallableGreetingResourceWrapper{" + this.delegate + "}";
+    }
+
+    public static <T extends CharSequence, DELEGATE extends GreetingService & Callable<T>>
+            BoundedCallableGreetingResourceWrapper<T, DELEGATE> of(DELEGATE delegate) {
+        return new BoundedCallableGreetingResourceWrapper<T, DELEGATE>(delegate);
+    }
+}

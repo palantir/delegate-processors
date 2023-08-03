@@ -1,0 +1,21 @@
+apply plugin: 'com.palantir.external-publish-jar'
+
+dependencies {
+    annotationProcessor 'org.immutables:value'
+
+    compileOnly 'org.immutables:value::annotations'
+
+    api 'com.squareup:javapoet'
+    api 'com.google.guava:guava'
+
+    implementation 'com.google.auto:auto-common'
+    implementation 'com.palantir.goethe:goethe'
+
+    testAnnotationProcessor 'com.google.auto.service:auto-service'
+
+    testCompileOnly 'com.google.auto.service:auto-service'
+
+    testImplementation 'org.assertj:assertj-core'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.google.testing.compile:compile-testing'
+}

@@ -1,0 +1,36 @@
+package com.palantir.delegate.processors.example;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.Objects;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.SimpleProcessor")
+public final class CloseableGreetingResourceWrapper<DELEGATE extends GreetingService & Closeable>
+        implements GreetingService, Closeable {
+    private final DELEGATE delegate;
+
+    private CloseableGreetingResourceWrapper(DELEGATE delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String greet() {
+        return this.delegate.greet();
+    }
+
+    @Override
+    public void close() throws IOException {
+        this.delegate.close();
+    }
+
+    @Override
+    public String toString() {
+        return "CloseableGreetingResourceWrapper{" + this.delegate + "}";
+    }
+
+    public static <DELEGATE extends GreetingService & Closeable> CloseableGreetingResourceWrapper<DELEGATE> of(
+            DELEGATE delegate) {
+        return new CloseableGreetingResourceWrapper<DELEGATE>(delegate);
+    }
+}

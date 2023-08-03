@@ -1,0 +1,32 @@
+package com.palantir.delegate.processors.example;
+
+import java.util.Objects;
+import javax.annotation.processing.Generated;
+
+@Generated("com.palantir.delegate.processors.processor.SimpleProcessor")
+public final class ExpandedGreetingServiceWrapper implements ExpandedGreetingService {
+    private final ExpandedGreetingService delegate;
+
+    private ExpandedGreetingServiceWrapper(ExpandedGreetingService delegate) {
+        this.delegate = Objects.requireNonNull(delegate, "delegate");
+    }
+
+    @Override
+    public String greet() {
+        return this.delegate.greet();
+    }
+
+    @Override
+    public String greet(String name) {
+        return this.delegate.greet(name);
+    }
+
+    @Override
+    public String toString() {
+        return "ExpandedGreetingServiceWrapper{" + this.delegate + "}";
+    }
+
+    public static ExpandedGreetingServiceWrapper of(ExpandedGreetingService delegate) {
+        return new ExpandedGreetingServiceWrapper(delegate);
+    }
+}
