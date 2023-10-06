@@ -9,7 +9,7 @@ com.google.j2objc:j2objc-annotations:2.8 (1 constraints: be09f5a0)
 com.palantir.goethe:goethe:0.12.0 (1 constraints: 3505293b)
 com.squareup:javapoet:1.13.0 (2 constraints: 2b113eee)
 org.checkerframework:checker-qual:3.33.0 (2 constraints: ac1489b7)
-org.immutables:value:2.9.3 (1 constraints: 10051336)
+org.immutables:value:2.10.0 (1 constraints: 35052f3b)
 
 [Test dependencies]
 com.google.auto.service:auto-service:1.1.1 (1 constraints: 0505f435)
