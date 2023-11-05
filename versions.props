@@ -8,4 +8,4 @@ com.palantir.goethe:goethe = 0.12.0
 com.squareup:javapoet = 1.13.0
 org.assertj:* = 3.24.2
 org.immutables:* = 2.10.0
-org.junit.jupiter:* = 5.10.0
+org.junit.jupiter:* = 5.10.1
