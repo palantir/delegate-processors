@@ -1,14 +1,14 @@
 # Run ./gradlew --write-locks to regenerate this file
 com.google.auto:auto-common:1.2.2 (3 constraints: 8926668f)
 com.google.code.findbugs:jsr305:3.0.2 (2 constraints: 1d0fb186)
-com.google.errorprone:error_prone_annotations:2.21.1 (3 constraints: da196a3a)
-com.google.guava:failureaccess:1.0.1 (1 constraints: 140ae1b4)
-com.google.guava:guava:32.1.3-jre (5 constraints: 2946e012)
+com.google.errorprone:error_prone_annotations:2.23.0 (3 constraints: db198e3a)
+com.google.guava:failureaccess:1.0.2 (1 constraints: 150ae2b4)
+com.google.guava:guava:33.0.0-jre (5 constraints: 2646ae10)
 com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava (1 constraints: bd17c918)
 com.google.j2objc:j2objc-annotations:2.8 (1 constraints: be09f5a0)
 com.palantir.goethe:goethe:0.12.0 (1 constraints: 3505293b)
 com.squareup:javapoet:1.13.0 (2 constraints: 2b113eee)
-org.checkerframework:checker-qual:3.37.0 (2 constraints: b01411b8)
+org.checkerframework:checker-qual:3.41.0 (2 constraints: ab1468b7)
 org.immutables:value:2.10.0 (1 constraints: 35052f3b)
 
 [Test dependencies]
