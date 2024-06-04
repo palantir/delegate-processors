@@ -340,37 +340,23 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         return builder.build();
     }
 
-    @SuppressWarnings("checkstyle:CyclomaticComplexity")
     private Stream<TypeElement> annotatedType(ProcessorContext context, Element annotatedElement) {
         ElementKind elementKind = annotatedElement.getKind();
-        switch (elementKind) {
-            case PACKAGE:
-            case ENUM:
-            case ENUM_CONSTANT:
-            case ANNOTATION_TYPE:
-            case LOCAL_VARIABLE:
-            case EXCEPTION_PARAMETER:
-            case STATIC_INIT:
-            case INSTANCE_INIT:
-            case TYPE_PARAMETER:
-            case OTHER:
-            case RESOURCE_VARIABLE:
-            case MODULE:
-            case FIELD:
-            case PARAMETER:
+        return switch (elementKind) {
+            case CLASS, INTERFACE -> {
+                yield Stream.of((TypeElement) annotatedElement);
+            }
+            case METHOD, CONSTRUCTOR -> {
+                yield annotatedType(context, annotatedElement.getEnclosingElement());
+            }
+            default -> {
                 // FIELD and PARAMETER could potentially be supported, but it's not clear why we would.
                 // Holding off until we have a specific use case in mind.
                 context.messager()
                         .printMessage(
                                 Kind.ERROR, "Unsupported annotated element kind: " + elementKind, annotatedElement);
-                return Stream.empty();
-            case CLASS:
-            case INTERFACE:
-                return Stream.of((TypeElement) annotatedElement);
-            case METHOD:
-            case CONSTRUCTOR:
-                return annotatedType(context, annotatedElement.getEnclosingElement());
-        }
-        throw new IllegalArgumentException("Unknown ElementKind: " + elementKind);
+                yield Stream.empty();
+            }
+        };
     }
 }

@@ -94,7 +94,6 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
     }
 
     @Override
-    @SuppressWarnings("RegexpSinglelineJava")
     public Optional<CodeBlock> onFailure(DelegateMethodArguments _arguments, LocalVariable throwable) {
         return Optional.of(CodeBlock.builder()
                 .addStatement("$N.printStackTrace()", throwable.name())
@@ -115,7 +114,7 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
                 .addTypeVariables(generatedType.typeVariables)
                 .addParameters(generatedType.fieldSpecs.stream()
                         .map(spec -> ParameterSpec.builder(spec.type, spec.name).build())
-                        .collect(Collectors.toList()))
+                        .toList())
                 .returns(arguments.generatedTypeName())
                 .addStatement(
                         "return new $T($L)",

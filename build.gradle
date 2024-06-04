@@ -26,11 +26,13 @@ apply plugin: 'com.palantir.jdks.latest'
 apply plugin: 'com.palantir.failure-reports'
 
 javaVersions {
-    libraryTarget = 11
+    libraryTarget = 17
     runtime = 21
 }
 
 allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'com.palantir.baseline-class-uniqueness'
     apply plugin: 'com.palantir.java-format'
     apply plugin: 'com.palantir.jakarta-package-alignment'
 
@@ -40,11 +42,6 @@ allprojects {
     repositories {
         mavenCentral() { metadataSources { mavenPom(); ignoreGradleMetadataRedirection() } }
     }
-}
-
-subprojects {
-    apply plugin: 'java-library'
-    apply plugin: 'com.palantir.baseline-class-uniqueness'
 
     tasks.withType(JavaCompile) {
         options.compilerArgs += ['-Werror']
