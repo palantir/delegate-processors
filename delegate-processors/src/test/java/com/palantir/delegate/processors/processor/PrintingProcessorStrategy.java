@@ -24,7 +24,6 @@ import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeSpec;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 import javax.lang.model.element.Modifier;
 
 public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
@@ -84,7 +83,7 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
                 .addTypeVariables(generatedType.typeVariables)
                 .addParameters(generatedType.fieldSpecs.stream()
                         .map(spec -> ParameterSpec.builder(spec.type, spec.name).build())
-                        .collect(Collectors.toList()))
+                        .toList())
                 .returns(arguments.generatedTypeName())
                 .addStatement(
                         "return new $T($L)",
