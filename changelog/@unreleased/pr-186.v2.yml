@@ -1,0 +1,6 @@
+type: break
+break:
+  description: Replace the `delegate-processors` module with a new 'delegate-processor'
+    module which uses the palantir fork of javapoet
+  links:
+  - https://github.com/palantir/delegate-processors/pull/186

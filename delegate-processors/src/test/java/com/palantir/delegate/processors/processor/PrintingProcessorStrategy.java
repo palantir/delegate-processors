@@ -16,12 +16,12 @@
 
 package com.palantir.delegate.processors.processor;
 
-import com.palantir.delegate.processors.DelegateProcessorStrategy;
-import com.palantir.delegate.processors.LocalVariable;
-import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.TypeSpec;
+import com.palantir.delegate.processor.DelegateProcessorStrategy;
+import com.palantir.delegate.processor.LocalVariable;
+import com.palantir.javapoet.CodeBlock;
+import com.palantir.javapoet.MethodSpec;
+import com.palantir.javapoet.ParameterSpec;
+import com.palantir.javapoet.TypeSpec;
 import java.util.Optional;
 import java.util.Set;
 import javax.lang.model.element.Modifier;
@@ -78,18 +78,20 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
 
     @Override
     public void customize(CustomizeArguments arguments, TypeSpec.Builder generatedType) {
+        TypeSpec incompleteType = generatedType.build();
         generatedType.addMethod(MethodSpec.methodBuilder("of")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .addTypeVariables(generatedType.typeVariables)
-                .addParameters(generatedType.fieldSpecs.stream()
-                        .map(spec -> ParameterSpec.builder(spec.type, spec.name).build())
+                .addTypeVariables(incompleteType.typeVariables())
+                .addParameters(incompleteType.fieldSpecs().stream()
+                        .map(spec ->
+                                ParameterSpec.builder(spec.type(), spec.name()).build())
                         .toList())
                 .returns(arguments.generatedTypeName())
                 .addStatement(
                         "return new $T($L)",
                         arguments.generatedTypeName(),
-                        generatedType.fieldSpecs.stream()
-                                .map(spec -> CodeBlock.of("$N", spec.name))
+                        incompleteType.fieldSpecs().stream()
+                                .map(spec -> CodeBlock.of("$N", spec.name()))
                                 .collect(CodeBlock.joining(", ")))
                 .build());
     }

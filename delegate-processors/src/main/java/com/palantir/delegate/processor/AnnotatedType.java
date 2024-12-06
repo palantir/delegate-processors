@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2023 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2024 Palantir Technologies Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package com.palantir.delegate.processors;
+package com.palantir.delegate.processor;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.palantir.delegate.processor.ImmutableAnnotatedType.TypeBuildStage;
+import java.util.List;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 import org.immutables.value.Value;
 
-@Target({ElementType.PACKAGE, ElementType.TYPE})
-@Retention(RetentionPolicy.SOURCE)
-@Value.Style(
-        visibility = Value.Style.ImplementationVisibility.PACKAGE,
-        overshadowImplementation = true,
-        jdkOnly = true,
-        stagedBuilder = true)
-@interface ImmutablesStyle {}
+@Value.Immutable
+@ImmutablesStyle
+public interface AnnotatedType {
+    TypeElement type();
+
+    List<TypeMirror> interfaces();
+
+    List<AnnotatedTypeMethod> methods();
+
+    static TypeBuildStage builder() {
+        return ImmutableAnnotatedType.builder();
+    }
+}

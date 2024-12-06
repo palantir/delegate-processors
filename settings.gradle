@@ -10,5 +10,5 @@ buildscript {
 apply plugin: 'com.palantir.jdks.settings'
 rootProject.name = 'delegate-processors-root'
 
-include 'delegate-processors'
-
+include 'delegate-processor'
+project(':delegate-processor').projectDir = file('delegate-processors')

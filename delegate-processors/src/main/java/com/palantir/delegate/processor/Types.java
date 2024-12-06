@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2021 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2024 Palantir Technologies Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.palantir.delegate.processors;
+package com.palantir.delegate.processor;
 
 import com.google.common.collect.Iterables;
-import com.palantir.delegate.processors.DelegateProcessorStrategy.DelegateTypeArguments;
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeVariableName;
+import com.palantir.delegate.processor.DelegateProcessorStrategy.DelegateTypeArguments;
+import com.palantir.javapoet.TypeName;
+import com.palantir.javapoet.TypeVariableName;
 import java.util.List;
 import javax.lang.model.type.TypeMirror;
 

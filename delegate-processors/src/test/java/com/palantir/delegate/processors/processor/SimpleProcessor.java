@@ -17,7 +17,7 @@
 package com.palantir.delegate.processors.processor;
 
 import com.google.auto.service.AutoService;
-import com.palantir.delegate.processors.DelegateProcessor;
+import com.palantir.delegate.processor.DelegateProcessor;
 import javax.annotation.processing.Processor;
 
 @AutoService(Processor.class)
