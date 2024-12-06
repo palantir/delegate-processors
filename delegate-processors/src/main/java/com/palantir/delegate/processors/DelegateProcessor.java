@@ -26,17 +26,17 @@ import com.palantir.delegate.processors.DelegateProcessorStrategy.CustomizeArgum
 import com.palantir.delegate.processors.DelegateProcessorStrategy.DelegateMethodArguments;
 import com.palantir.delegate.processors.DelegateProcessorStrategy.DelegateTypeArguments;
 import com.palantir.goethe.Goethe;
-import com.squareup.javapoet.AnnotationSpec;
-import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.JavaFile;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeSpec;
-import com.squareup.javapoet.TypeVariableName;
+import com.palantir.javapoet.AnnotationSpec;
+import com.palantir.javapoet.ClassName;
+import com.palantir.javapoet.CodeBlock;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.JavaFile;
+import com.palantir.javapoet.MethodSpec;
+import com.palantir.javapoet.ParameterSpec;
+import com.palantir.javapoet.ParameterizedTypeName;
+import com.palantir.javapoet.TypeName;
+import com.palantir.javapoet.TypeSpec;
+import com.palantir.javapoet.TypeVariableName;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -84,11 +84,11 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                 .flatMap(element -> toModelType(element, context).stream())
                 .map(modelType -> generateJavaFile(modelType, context))
                 .forEach(javaFile -> {
-                    if (javaFile.typeSpec.originatingElements.size() != 1) {
+                    if (javaFile.typeSpec().originatingElements().size() != 1) {
                         context.messager()
                                 .printMessage(
                                         Kind.ERROR,
-                                        "Expected '" + javaFile.typeSpec.name
+                                        "Expected '" + javaFile.typeSpec().name()
                                                 + "' to have a single originating element.");
                     }
                     try {
@@ -97,9 +97,10 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                         context.messager()
                                 .printMessage(
                                         Kind.ERROR,
-                                        "Failed to write class '" + javaFile.typeSpec.name + "': "
+                                        "Failed to write class '"
+                                                + javaFile.typeSpec().name() + "': "
                                                 + Throwables.getStackTraceAsString(e),
-                                        Iterables.getFirst(javaFile.typeSpec.originatingElements, null));
+                                        Iterables.getFirst(javaFile.typeSpec().originatingElements(), null));
                     }
                 });
 
@@ -190,22 +191,23 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         builder.addFields(allFields);
 
         List<FieldSpec> ctorFields = allFields.stream()
-                .filter(field -> field.initializer.isEmpty() && !field.modifiers.contains(Modifier.STATIC))
+                .filter(field ->
+                        field.initializer().isEmpty() && !field.modifiers().contains(Modifier.STATIC))
                 .collect(Collectors.toUnmodifiableList());
 
         builder.addMethod(MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PRIVATE)
                 .addParameters(ctorFields.stream()
-                        .map(fieldSpec -> ParameterSpec.builder(fieldSpec.type, fieldSpec.name)
+                        .map(fieldSpec -> ParameterSpec.builder(fieldSpec.type(), fieldSpec.name())
                                 .build())
                         .collect(ImmutableList.toImmutableList()))
                 .addCode(ctorFields.stream()
                         .map(field -> CodeBlock.builder()
                                 .addStatement(
                                         "this.$1N = $2T.requireNonNull($1N, $3S)",
-                                        field.name,
+                                        field.name(),
                                         Objects.class,
-                                        field.name)
+                                        field.name())
                                 .build())
                         .collect(CodeBlock.joining("")))
                 .build());
@@ -225,12 +227,13 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                 .addStatement("return $S + this.$N + $S", generatedTypeSimpleName + '{', DELEGATE_NAME, "}")
                 .build());
 
-        TypeName generatedTypeName = builder.typeVariables.isEmpty()
+        List<TypeVariableName> typeVariables = builder.build().typeVariables();
+        TypeName generatedTypeName = typeVariables.isEmpty()
                 ? generatedClassName
                 : ParameterizedTypeName.get(
                         generatedClassName,
-                        builder.typeVariables.stream()
-                                .map(param -> (TypeName) TypeVariableName.get(param.name))
+                        typeVariables.stream()
+                                .map(param -> (TypeName) TypeVariableName.get(param.name()))
                                 .toArray(TypeName[]::new));
         strategy.customize(
                 CustomizeArguments.builder()
@@ -272,7 +275,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                             });
         } else {
             LocalVariable result = LocalVariable.builder()
-                    .type(method.build().returnType)
+                    .type(method.build().returnType())
                     .name("_result")
                     .build();
             strategy.onSuccess(arguments, Optional.of(result))

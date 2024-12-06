@@ -16,10 +16,10 @@
 
 package com.palantir.delegate.processors;
 
-import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.TypeName;
-import com.squareup.javapoet.TypeSpec;
+import com.palantir.javapoet.CodeBlock;
+import com.palantir.javapoet.FieldSpec;
+import com.palantir.javapoet.TypeName;
+import com.palantir.javapoet.TypeSpec;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;

@@ -16,7 +16,7 @@
 
 package com.palantir.delegate.processors;
 
-import com.squareup.javapoet.TypeName;
+import com.palantir.javapoet.TypeName;
 import org.immutables.value.Value;
 
 @Value.Immutable

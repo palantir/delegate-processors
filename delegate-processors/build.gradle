@@ -5,7 +5,7 @@ dependencies {
 
     compileOnly 'org.immutables:value::annotations'
 
-    api 'com.squareup:javapoet'
+    api 'com.palantir.javapoet:javapoet'
     api 'com.google.guava:guava'
 
     implementation 'com.google.auto:auto-common'

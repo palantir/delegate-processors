@@ -18,10 +18,10 @@ package com.palantir.delegate.processors.processor;
 
 import com.google.common.collect.ImmutableList;
 import com.palantir.delegate.processors.DelegateProcessorStrategy;
-import com.squareup.javapoet.CodeBlock;
-import com.squareup.javapoet.MethodSpec;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.TypeSpec;
+import com.palantir.javapoet.CodeBlock;
+import com.palantir.javapoet.MethodSpec;
+import com.palantir.javapoet.ParameterSpec;
+import com.palantir.javapoet.TypeSpec;
 import java.util.Set;
 import javax.lang.model.element.Modifier;
 
@@ -40,18 +40,20 @@ public enum SimpleProcessorStrategy implements DelegateProcessorStrategy {
 
     @Override
     public void customize(CustomizeArguments arguments, TypeSpec.Builder generatedType) {
+        TypeSpec incomplete = generatedType.build();
         generatedType.addMethod(MethodSpec.methodBuilder("of")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .addTypeVariables(generatedType.typeVariables)
-                .addParameters(generatedType.fieldSpecs.stream()
-                        .map(spec -> ParameterSpec.builder(spec.type, spec.name).build())
+                .addTypeVariables(incomplete.typeVariables())
+                .addParameters(incomplete.fieldSpecs().stream()
+                        .map(spec ->
+                                ParameterSpec.builder(spec.type(), spec.name()).build())
                         .collect(ImmutableList.toImmutableList()))
                 .returns(arguments.generatedTypeName())
                 .addStatement(
                         "return new $T($L)",
                         arguments.generatedTypeName(),
-                        generatedType.fieldSpecs.stream()
-                                .map(spec -> CodeBlock.of("$N", spec.name))
+                        incomplete.fieldSpecs().stream()
+                                .map(spec -> CodeBlock.of("$N", spec.name()))
                                 .collect(CodeBlock.joining(",")))
                 .build());
     }
