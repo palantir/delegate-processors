@@ -16,8 +16,8 @@
 
 package com.palantir.delegate.processors.processor;
 
-import com.palantir.delegate.processors.DelegateProcessorStrategy;
-import com.palantir.delegate.processors.LocalVariable;
+import com.palantir.delegate.processor.DelegateProcessorStrategy;
+import com.palantir.delegate.processor.LocalVariable;
 import com.palantir.javapoet.CodeBlock;
 import com.palantir.javapoet.MethodSpec;
 import com.palantir.javapoet.ParameterSpec;

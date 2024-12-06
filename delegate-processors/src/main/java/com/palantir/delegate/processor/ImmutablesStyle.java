@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2023 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2024 Palantir Technologies Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.palantir.delegate.processors;
+package com.palantir.delegate.processor;
 
-import com.palantir.javapoet.TypeName;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import org.immutables.value.Value;
 
-@Value.Immutable
-@ImmutablesStyle
-public interface LocalVariable {
-    TypeName type();
-
-    String name();
-
-    static ImmutableLocalVariable.TypeBuildStage builder() {
-        return ImmutableLocalVariable.builder();
-    }
-}
+@Target({ElementType.PACKAGE, ElementType.TYPE})
+@Retention(RetentionPolicy.SOURCE)
+@Value.Style(
+        visibility = Value.Style.ImplementationVisibility.PACKAGE,
+        overshadowImplementation = true,
+        jdkOnly = true,
+        stagedBuilder = true)
+@interface ImmutablesStyle {}

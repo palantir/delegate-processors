@@ -17,7 +17,7 @@
 package com.palantir.delegate.processors.processor;
 
 import com.google.common.collect.ImmutableList;
-import com.palantir.delegate.processors.DelegateProcessorStrategy;
+import com.palantir.delegate.processor.DelegateProcessorStrategy;
 import com.palantir.javapoet.CodeBlock;
 import com.palantir.javapoet.MethodSpec;
 import com.palantir.javapoet.ParameterSpec;

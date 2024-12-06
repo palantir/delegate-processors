@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2021 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2024 Palantir Technologies Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.palantir.delegate.processors;
+package com.palantir.delegate.processor;
 
 import com.google.auto.common.MoreElements;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.palantir.delegate.processors.DelegateProcessorStrategy.AdditionalFieldsArguments;
-import com.palantir.delegate.processors.DelegateProcessorStrategy.CustomizeArguments;
-import com.palantir.delegate.processors.DelegateProcessorStrategy.DelegateMethodArguments;
-import com.palantir.delegate.processors.DelegateProcessorStrategy.DelegateTypeArguments;
+import com.palantir.delegate.processor.DelegateProcessorStrategy.AdditionalFieldsArguments;
+import com.palantir.delegate.processor.DelegateProcessorStrategy.CustomizeArguments;
+import com.palantir.delegate.processor.DelegateProcessorStrategy.DelegateMethodArguments;
+import com.palantir.delegate.processor.DelegateProcessorStrategy.DelegateTypeArguments;
 import com.palantir.goethe.Goethe;
 import com.palantir.javapoet.AnnotationSpec;
 import com.palantir.javapoet.ClassName;

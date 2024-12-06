@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2023 Palantir Technologies Inc. All rights reserved.
+ * (c) Copyright 2024 Palantir Technologies Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package com.palantir.delegate.processors;
+package com.palantir.delegate.processor;
 
-import com.palantir.delegate.processors.ImmutableAnnotatedType.TypeBuildStage;
-import java.util.List;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.TypeMirror;
+import com.palantir.javapoet.TypeName;
 import org.immutables.value.Value;
 
 @Value.Immutable
 @ImmutablesStyle
-public interface AnnotatedType {
-    TypeElement type();
+public interface LocalVariable {
+    TypeName type();
 
-    List<TypeMirror> interfaces();
+    String name();
 
-    List<AnnotatedTypeMethod> methods();
-
-    static TypeBuildStage builder() {
-        return ImmutableAnnotatedType.builder();
+    static ImmutableLocalVariable.TypeBuildStage builder() {
+        return ImmutableLocalVariable.builder();
     }
 }
