@@ -5,7 +5,6 @@ com.google.errorprone:error_prone_annotations = 2.11.0
 com.google.guava:guava = 33.3.1-jre
 com.google.testing.compile:compile-testing = 0.21.0
 com.palantir.goethe:goethe = 0.14.0
-com.squareup:javapoet = 1.13.0
 com.palantir.javapoet:javapoet = 0.5.0
 org.assertj:* = 3.26.3
 org.immutables:* = 2.10.1
