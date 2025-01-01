@@ -6,6 +6,6 @@ com.google.guava:guava = 33.4.0-jre
 com.google.testing.compile:compile-testing = 0.21.0
 com.palantir.goethe:goethe = 0.14.0
 com.palantir.javapoet:javapoet = 0.6.0
-org.assertj:* = 3.27.0
+org.assertj:* = 3.27.1
 org.immutables:* = 2.10.1
 org.junit.jupiter:* = 5.11.4
