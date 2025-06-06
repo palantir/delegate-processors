@@ -8,5 +8,5 @@ com.palantir.goethe:goethe = 0.15.0
 com.palantir.javapoet:javapoet = 0.7.0
 org.assertj:* = 3.27.3
 org.immutables:* = 2.10.1
-org.junit.jupiter:* = 5.12.2
-org.junit.platform:* = 1.12.2
+org.junit.jupiter:* = 5.13.0
+org.junit.platform:* = 1.13.0
