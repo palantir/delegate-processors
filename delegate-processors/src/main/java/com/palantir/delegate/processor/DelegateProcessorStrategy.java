@@ -79,6 +79,7 @@ public interface DelegateProcessorStrategy {
     /**
      * Returns additional fields that will be added to the generated class.
      */
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     default List<FieldSpec> additionalFields(AdditionalFieldsArguments arguments) {
         return List.of();
     }

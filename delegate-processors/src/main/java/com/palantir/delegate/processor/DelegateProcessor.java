@@ -75,6 +75,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         return strategy.supportedAnnotations();
     }
 
+    @SuppressWarnings({"for-rollout:AndroidJdkLibsChecker", "for-rollout:Java8ApiChecker"})
     @Override
     public final boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         ProcessorContext context = ProcessorContext.create(processingEnv);
@@ -124,6 +125,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                 .build());
     }
 
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     private List<AnnotatedTypeMethod> toModelMethods(TypeElement typeElement, ProcessorContext context) {
         return MoreElements.getLocalAndInheritedMethods(typeElement, context.types(), context.elements()).stream()
                 .filter(executableElement -> !Methods.isObjectMethod(context.elements(), executableElement))
@@ -170,12 +172,13 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         }
         annotatedType.interfaces().forEach(builder::addSuperinterface);
 
+        @SuppressWarnings({"for-rollout:UnnecessaryFinal", "for-rollout:Var"})
         final TypeName delegateTypeName = strategy.delegateType(DelegateTypeArguments.builder()
                 .context(context)
                 .type(annotatedType)
                 .build());
-        if (delegateTypeName instanceof TypeVariableName) {
-            builder.addTypeVariable((TypeVariableName) delegateTypeName);
+        if (delegateTypeName instanceof TypeVariableName typeVariableName) {
+            builder.addTypeVariable(typeVariableName);
         }
 
         FieldSpec delegateField = FieldSpec.builder(delegateTypeName, DELEGATE_NAME)
@@ -190,6 +193,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
                 .build();
         builder.addFields(allFields);
 
+        @SuppressWarnings("for-rollout:Java8ApiChecker")
         List<FieldSpec> ctorFields = allFields.stream()
                 .filter(field ->
                         field.initializer().isEmpty() && !field.modifiers().contains(Modifier.STATIC))
@@ -246,6 +250,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         return builder.build();
     }
 
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     private MethodSpec generateMethodSpec(DelegateMethodArguments arguments) {
         LocalVariable throwable = LocalVariable.builder()
                 .type(ClassName.get(Throwable.class))
@@ -311,6 +316,7 @@ public abstract class DelegateProcessor extends AbstractProcessor {
         return method.build();
     }
 
+    @SuppressWarnings({"for-rollout:AndroidJdkLibsChecker", "for-rollout:Java8ApiChecker"})
     private static List<TypeMirror> getInterfaces(TypeElement typeElement, ProcessorContext context) {
         if (typeElement.asType().getKind() == TypeKind.ERROR) {
             context.messager()
