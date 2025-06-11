@@ -29,6 +29,7 @@ import javax.lang.model.element.Modifier;
 public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
     INSTANCE;
 
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     @Override
     public Set<String> supportedAnnotations() {
         return Set.of(Delegate.class.getName());
@@ -48,8 +49,11 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
                 .build());
     }
 
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     @Override
-    public Optional<CodeBlock> onSuccess(DelegateMethodArguments _arguments, Optional<LocalVariable> result) {
+    public Optional<CodeBlock> onSuccess(
+            @SuppressWarnings("for-rollout:IdentifierName") DelegateMethodArguments _arguments,
+            Optional<LocalVariable> result) {
         CodeBlock.Builder builder = CodeBlock.builder();
         result.ifPresentOrElse(
                 variable -> {
@@ -63,14 +67,17 @@ public enum PrintingProcessorStrategy implements DelegateProcessorStrategy {
 
     @Override
     @SuppressWarnings("RegexpSinglelineJava")
-    public Optional<CodeBlock> onFailure(DelegateMethodArguments _arguments, LocalVariable throwable) {
+    public Optional<CodeBlock> onFailure(
+            @SuppressWarnings("for-rollout:IdentifierName") DelegateMethodArguments _arguments,
+            LocalVariable throwable) {
         return Optional.of(CodeBlock.builder()
                 .addStatement("$N.printStackTrace()", throwable.name())
                 .build());
     }
 
     @Override
-    public Optional<CodeBlock> alwaysAfter(DelegateMethodArguments _arguments) {
+    public Optional<CodeBlock> alwaysAfter(
+            @SuppressWarnings("for-rollout:IdentifierName") DelegateMethodArguments _arguments) {
         return Optional.of(CodeBlock.builder()
                 .addStatement("System.out.println($S)", "done")
                 .build());

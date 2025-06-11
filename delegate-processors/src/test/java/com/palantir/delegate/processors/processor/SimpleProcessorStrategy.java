@@ -28,6 +28,7 @@ import javax.lang.model.element.Modifier;
 public enum SimpleProcessorStrategy implements DelegateProcessorStrategy {
     INSTANCE;
 
+    @SuppressWarnings("for-rollout:Java8ApiChecker")
     @Override
     public Set<String> supportedAnnotations() {
         return Set.of(Delegate.class.getName());

@@ -45,6 +45,7 @@ import javax.lang.model.util.Elements;
 
 final class Methods {
 
+    @SuppressWarnings("for-rollout:AndroidJdkLibsChecker")
     static boolean isVoid(AnnotatedTypeMethod method, ProcessorContext context) {
         return context.types()
                 .isSameType(
@@ -129,6 +130,7 @@ final class Methods {
         }
         for (ExecutableElement element : overridden) {
             ExecutableType executableType = (ExecutableType) element.asType();
+            @SuppressWarnings("for-rollout:Var")
             boolean allMatch = true;
             for (ExecutableElement potential : overridden) {
                 if (potential == element) {
@@ -149,8 +151,8 @@ final class Methods {
     static boolean isObjectMethod(Elements elements, ExecutableElement methodElement) {
         TypeElement object = elements.getTypeElement(Object.class.getName());
         for (Element element : object.getEnclosedElements()) {
-            if (element instanceof ExecutableElement) {
-                ExecutableElement executableElement = (ExecutableElement) element;
+            if (element instanceof ExecutableElement executableElement) {
+
                 if (elements.overrides(methodElement, executableElement, object)) {
                     return true;
                 }
@@ -179,6 +181,7 @@ final class Methods {
         }
     }
 
+    @SuppressWarnings("for-rollout:InconsistentOverloads")
     private static void collectInterfaceMethods(
             TypeMirror interfaceMirror,
             ExecutableElement methodElement,
