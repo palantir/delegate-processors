@@ -38,7 +38,6 @@ final class Types {
         }
 
         for (TypeMirror interfaceMirror : interfaces) {
-            @SuppressWarnings("for-rollout:Var")
             boolean allMatch = true;
             for (TypeMirror toCheck : interfaces) {
                 if (!arguments.context().types().isAssignable(interfaceMirror, toCheck)) {
