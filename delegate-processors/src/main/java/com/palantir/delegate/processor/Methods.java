@@ -45,7 +45,6 @@ import javax.lang.model.util.Elements;
 
 final class Methods {
 
-    @SuppressWarnings("for-rollout:AndroidJdkLibsChecker")
     static boolean isVoid(AnnotatedTypeMethod method, ProcessorContext context) {
         return context.types()
                 .isSameType(
@@ -130,7 +129,6 @@ final class Methods {
         }
         for (ExecutableElement element : overridden) {
             ExecutableType executableType = (ExecutableType) element.asType();
-            @SuppressWarnings("for-rollout:Var")
             boolean allMatch = true;
             for (ExecutableElement potential : overridden) {
                 if (potential == element) {
