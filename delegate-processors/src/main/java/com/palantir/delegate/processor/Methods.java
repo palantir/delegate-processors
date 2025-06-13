@@ -179,7 +179,6 @@ final class Methods {
         }
     }
 
-    @SuppressWarnings("for-rollout:InconsistentOverloads")
     private static void collectInterfaceMethods(
             TypeMirror interfaceMirror,
             ExecutableElement methodElement,
