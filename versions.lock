@@ -8,7 +8,7 @@ com.google.j2objc:j2objc-annotations:3.0.0 (1 constraints: 150aeab4)
 com.palantir.goethe:goethe:0.15.0 (1 constraints: 3805323b)
 com.palantir.javapoet:javapoet:0.7.0 (2 constraints: cf109cd1)
 com.squareup:javapoet:1.13.0 (1 constraints: f50b65f7)
-org.immutables:value:2.10.1 (1 constraints: 3605303b)
+org.immutables:value:2.11.0 (1 constraints: 3605323b)
 org.jspecify:jspecify:1.0.0 (1 constraints: 130ae0b4)
 
 [Test dependencies]
