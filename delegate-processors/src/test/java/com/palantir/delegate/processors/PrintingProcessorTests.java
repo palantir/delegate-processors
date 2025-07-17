@@ -34,6 +34,7 @@ import com.palantir.delegate.processors.processor.PrintingProcessor;
 import com.palantir.delegate.processors.processor.PrintingProcessorStrategy;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -101,7 +102,6 @@ public class PrintingProcessorTests {
                         javaFileObject -> assertContentsMatch(javaFileObject, generatedClassFileRelativePath));
     }
 
-    @SuppressWarnings("for-rollout:PreferUncheckedIoException")
     private static Compilation compileTestClass(Path basePath, Class<?> clazz) {
         Path clazzPath = basePath.resolve(Paths.get(
                 Joiner.on("/").join(Splitter.on(".").split(clazz.getPackage().getName())),
@@ -112,11 +112,10 @@ public class PrintingProcessorTests {
                     .withProcessors(new PrintingProcessor())
                     .compile(JavaFileObjects.forResource(clazzPath.toUri().toURL()));
         } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+            throw new UncheckedIOException(e);
         }
     }
 
-    @SuppressWarnings("for-rollout:PreferUncheckedIoException")
     private static void assertContentsMatch(JavaFileObject javaFileObject, String generatedClassFile) {
         try {
             Path output = RESOURCES_BASE_DIR.resolve(generatedClassFile + ".generated");
@@ -128,7 +127,7 @@ public class PrintingProcessorTests {
             }
             Assertions.assertThat(generatedContents).isEqualTo(readFromFile(output));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new UncheckedIOException(e);
         }
     }
 
