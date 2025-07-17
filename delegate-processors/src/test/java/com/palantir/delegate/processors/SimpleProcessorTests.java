@@ -107,6 +107,7 @@ public class SimpleProcessorTests {
                         javaFileObject -> assertContentsMatch(javaFileObject, generatedClassFileRelativePath));
     }
 
+    @SuppressWarnings("for-rollout:PreferUncheckedIoException")
     private static Compilation compileTestClass(Path basePath, Class<?> clazz) {
         Path clazzPath = basePath.resolve(Paths.get(
                 Joiner.on("/").join(Splitter.on(".").split(clazz.getPackage().getName())),
@@ -121,6 +122,7 @@ public class SimpleProcessorTests {
         }
     }
 
+    @SuppressWarnings("for-rollout:PreferUncheckedIoException")
     private static void assertContentsMatch(JavaFileObject javaFileObject, String generatedClassFile) {
         try {
             Path output = RESOURCES_BASE_DIR.resolve(generatedClassFile + ".generated");
