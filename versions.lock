@@ -2,15 +2,15 @@
 
 com.google.auto:auto-common:1.2.2 (3 constraints: ba2623b6)
 
-com.google.errorprone:error_prone_annotations:2.41.0 (3 constraints: 101a2b55)
+com.google.errorprone:error_prone_annotations:2.41.0 (3 constraints: 0c1aa054)
 
 com.google.guava:failureaccess:1.0.3 (1 constraints: 160ae3b4)
 
-com.google.guava:guava:33.4.8-jre (5 constraints: 07474626)
+com.google.guava:guava:33.5.0-jre (5 constraints: 00470821)
 
 com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava (1 constraints: bd17c918)
 
-com.google.j2objc:j2objc-annotations:3.0.0 (1 constraints: 150aeab4)
+com.google.j2objc:j2objc-annotations:3.1 (1 constraints: b809f1a0)
 
 com.palantir.goethe:goethe:0.16.0 (1 constraints: 3905353b)
 
