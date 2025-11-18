@@ -7,6 +7,6 @@ com.google.testing.compile:compile-testing = 0.23.0
 com.palantir.goethe:goethe = 0.17.0
 com.palantir.javapoet:javapoet = 0.8.0
 org.assertj:* = 3.27.6
-org.immutables:* = 2.11.6
+org.immutables:* = 2.11.7
 org.junit.jupiter:* = 6.0.1
 org.junit.platform:* = 6.0.1
