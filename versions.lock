@@ -2,7 +2,7 @@
 
 com.google.auto:auto-common:1.2.2 (3 constraints: ba2623b6)
 
-com.google.errorprone:error_prone_annotations:2.41.0 (3 constraints: 0c1aa054)
+com.google.errorprone:error_prone_annotations:2.47.0 (3 constraints: 151afe56)
 
 com.google.guava:failureaccess:1.0.3 (1 constraints: 160ae3b4)
 
