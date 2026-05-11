@@ -121,6 +121,7 @@ final class Methods {
 
     // Returns the most specific interface method if possible. If the method signature is provided by
     // multiple interfaces, the implementation element is returned instead.
+    @SuppressWarnings("for-rollout:ReferenceEquality")
     private static ExecutableElement findContractMethod(
             AnnotatedTypeMethod annotatedTypeMethod, ProcessorContext context) {
         List<ExecutableElement> overridden = annotatedTypeMethod.overridden();
