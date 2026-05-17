@@ -18,7 +18,7 @@ com.palantir.javapoet:javapoet:0.15.0 (2 constraints: 2c115fee)
 
 com.squareup:javapoet:1.13.0 (1 constraints: f50b65f7)
 
-org.immutables:value:2.12.1 (1 constraints: 3805363b)
+org.immutables:value:2.12.2 (1 constraints: 3905373b)
 
 org.jspecify:jspecify:1.0.0 (9 constraints: be8ca488)
 
