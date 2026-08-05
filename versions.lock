@@ -12,9 +12,9 @@ com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava (1 c
 
 com.google.j2objc:j2objc-annotations:3.1 (1 constraints: b809f1a0)
 
-com.palantir.goethe:goethe:0.26.0 (1 constraints: 3a05393b)
+com.palantir.goethe:goethe:0.27.0 (1 constraints: 3b053c3b)
 
-com.palantir.javapoet:javapoet:0.18.0 (2 constraints: 3211ddee)
+com.palantir.javapoet:javapoet:0.18.0 (2 constraints: 3311e0ee)
 
 com.squareup:javapoet:1.13.0 (1 constraints: f50b65f7)
 
