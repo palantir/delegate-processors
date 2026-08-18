@@ -14,7 +14,7 @@ com.google.j2objc:j2objc-annotations:3.1 (1 constraints: b809f1a0)
 
 com.palantir.goethe:goethe:0.28.0 (1 constraints: 3c053f3b)
 
-com.palantir.javapoet:javapoet:0.18.0 (2 constraints: 3311e0ee)
+com.palantir.javapoet:javapoet:0.19.0 (2 constraints: 341107ef)
 
 com.squareup:javapoet:1.13.0 (1 constraints: f50b65f7)
 
