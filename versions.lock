@@ -6,7 +6,7 @@ com.google.errorprone:error_prone_annotations:2.50.0 (3 constraints: 151aff56)
 
 com.google.guava:failureaccess:1.0.3 (1 constraints: 160ae3b4)
 
-com.google.guava:guava:33.7.2-jre (5 constraints: 04470c24)
+com.google.guava:guava:33.7.2-jre (5 constraints: 01478b23)
 
 com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava (1 constraints: bd17c918)
 
@@ -20,7 +20,7 @@ com.squareup:javapoet:1.13.0 (1 constraints: f50b65f7)
 
 org.immutables:value:2.12.2 (1 constraints: 3905373b)
 
-org.jspecify:jspecify:1.0.1 (9 constraints: bf8c178a)
+org.jspecify:jspecify:1.0.1 (9 constraints: c08c578b)
 
 
 
@@ -30,9 +30,9 @@ com.google.auto.service:auto-service:1.1.1 (1 constraints: 0505f435)
 
 com.google.auto.service:auto-service-annotations:1.1.1 (1 constraints: 9c0f6a86)
 
-com.google.auto.value:auto-value-annotations:1.11.0 (2 constraints: d01cd319)
+com.google.auto.value:auto-value-annotations:1.11.1 (2 constraints: d11cf419)
 
-com.google.testing.compile:compile-testing:0.23.0 (1 constraints: 3705303b)
+com.google.testing.compile:compile-testing:0.24.0 (1 constraints: 3805333b)
 
 com.google.truth:truth:1.4.5 (1 constraints: 1d1219fb)
 
