@@ -2,11 +2,11 @@
 
 com.google.auto:auto-common:1.2.2 (3 constraints: ba2623b6)
 
-com.google.errorprone:error_prone_annotations:2.50.0 (3 constraints: 151aff56)
+com.google.errorprone:error_prone_annotations:2.52.0 (3 constraints: 171a4557)
 
 com.google.guava:failureaccess:1.0.3 (1 constraints: 160ae3b4)
 
-com.google.guava:guava:33.7.2-jre (5 constraints: 01478b23)
+com.google.guava:guava:33.8.0-jre (5 constraints: 0047cd22)
 
 com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava (1 constraints: bd17c918)
 
